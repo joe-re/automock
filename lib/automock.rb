@@ -15,4 +15,10 @@ module Automock
       end
     end
   end
+
+  class Railtie < ::Rails::Railtie
+    rake_tasks do
+      load "tasks/automock.rake"
+    end
+  end
 end
