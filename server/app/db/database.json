@@ -2,5 +2,9 @@
   "dev": {
     "driver": "sqlite3",
     "filename": "automock.db"
+  },
+  "test": {
+    "driver": "sqlite3",
+    "filename": ":memory:"
   }
 }

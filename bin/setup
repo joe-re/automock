@@ -9,4 +9,4 @@ bundle install
 cd server
 npm install
 npm run build
-node node_modules/db-migrate/bin/db-migrate up
+node node_modules/db-migrate/bin/db-migrate up --config app/db/database.json -e dev

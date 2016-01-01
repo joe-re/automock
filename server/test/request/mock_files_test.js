@@ -3,6 +3,7 @@
 const request = require('supertest');
 
 process.env.AUTOMOCK_ROOT_PATH=__dirname + '/../fixtures/mock';
+process.env.NODE_ENV=test;
 
 let server;
 
