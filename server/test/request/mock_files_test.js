@@ -11,14 +11,9 @@ describe('loading express', function () {
     server = require('./../../app/index');
   });
   it('responds to /mock_files', function testSlash(done) {
-    request(server)
-      .get('/mock_files')
-      .expect(200, done);
-  });
-  it('404 everything else', function testPath(done) {
-    request(server)
-      .get('/foo/bar')
-      .expect(404, done);
+    request(server).
+      get('/mock_files').
+      expect(200, [ 'test.json', 'api/v1/api_test.json' ], done);
   });
 });
 
