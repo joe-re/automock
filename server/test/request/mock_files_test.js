@@ -1,17 +1,14 @@
 'use strict';
 
+require('./common_hooks');
 const request = require('supertest');
 
-process.env.AUTOMOCK_ROOT_PATH=__dirname + '/../fixtures/mock';
-process.env.NODE_ENV=test;
-
 let server;
-
-describe('loading express', function () {
+describe('GET /mock_files', function () {
   beforeEach(function () {
     server = require('./../../app/index');
   });
-  it('responds to /mock_files', function testSlash(done) {
+  it('receives mock_files and 200', function testSlash(done) {
     request(server).
       get('/mock_files').
       expect(200, [ 'test.json', 'api/v1/api_test.json' ], done);
