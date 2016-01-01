@@ -31,7 +31,7 @@
     "superagent": "^1.6.1"
   },
   "scripts": {
-    "test": "mocha --require babel-core/register --recursive spec/server",
+    "test": "mocha --require babel-core/register --recursive test",
     "build": "gulp build"
   },
   "repository": {

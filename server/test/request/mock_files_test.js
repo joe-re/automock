@@ -8,7 +8,7 @@ let server;
 
 describe('loading express', function () {
   beforeEach(function () {
-    server = require('./../../../server/index');
+    server = require('./../../app/index');
   });
   it('responds to /mock_files', function testSlash(done) {
     request(server)
