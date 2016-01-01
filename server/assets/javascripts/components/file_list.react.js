@@ -9,7 +9,7 @@ export default class FileList extends React.Component {
       <div className="file-list col-xs-5">
         <div className="title">{this.props.title}</div>
         <div>
-          <select multiple size="10">
+          <select size="10">
             {options}
           </select>
         </div>

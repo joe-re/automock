@@ -15,6 +15,19 @@ app.get('/mock_files', function(req, res){
   });
 });
 
+app.get('/selected_files', function(req, res){
+  SelectedFile.findAll().
+    then((files) => {
+      const response = files.map((file) => {
+        return {
+          id: file.id,
+          name: file.name
+        };
+      });
+      res.status(200).send(response);
+    });
+});
+
 app.post('/selected_files', function(req, res){
   SelectedFile.create({ name: req.name }).
   then((selectedFile) => {
