@@ -7,7 +7,7 @@ seq         = require 'run-sequence'
 
 gulp.path =
   src: 'assets'
-  dist: 'server/assets'
+  dist: 'app/assets'
 
 gulp.task 'build', ->
   seq ['build:html', 'build:browserify', 'build:scss']

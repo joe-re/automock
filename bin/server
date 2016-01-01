@@ -1,2 +1,2 @@
 export AUTOMOCK_ROOT_PATH=${PWD}/mock
-node server/index.js
+node server/app/index.js
