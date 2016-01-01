@@ -32,7 +32,8 @@
   },
   "scripts": {
     "test": "mocha --require babel-core/register --recursive test",
-    "build": "gulp build"
+    "build": "gulp build",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",

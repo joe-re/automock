@@ -1,15 +1,22 @@
+/* flow */
+
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as PageActions from '../actions/page_actions';
+import * as PageActions from '../actions/mock_files_actions';
+import FileList from './../components/file_list';
 
 class AppContainer extends React.Component {
+  componentDidMount() {
+    const { getMockFiles } = this.props;
+    getMockFiles();
+  }
+
   render() {
-    const { getInitialPage } = this.props;
+    const { mockFiles } = this.props;
     return (
-      <div>
-        <button onClick={getInitialPage}>this</button>
-        {this.props.page}
+      <div className="container">
+        <FileList mockFiles={mockFiles} />
       </div>
     );
   }
@@ -17,7 +24,7 @@ class AppContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    page: state.page
+    mockFiles: state.mockFiles
   };
 }
 

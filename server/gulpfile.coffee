@@ -31,4 +31,5 @@ gulp.task 'build:scss', ->
     .pipe gulp.dest(@path.dist)
 
 gulp.task 'watch', ['build'], ->
-  gulp.watch("#{@path.src}/**/*", ['build:browserify'])
+  gulp.watch("#{@path.src}/**/*.js", ['build:browserify'])
+  gulp.watch("#{@path.src}/**/*.scss", ['build:scss'])
