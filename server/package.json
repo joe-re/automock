@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.2",
+    "db-migrate": "^0.9.23",
     "express": "^4.13.3",
     "immutable": "^3.7.6",
     "react": "^0.14.3",
@@ -28,6 +29,7 @@
     "redux": "^3.0.5",
     "redux-logger": "^2.3.1",
     "redux-thunk": "^1.0.2",
+    "sqlite3": "^3.1.1",
     "superagent": "^1.6.1"
   },
   "scripts": {

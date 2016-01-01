@@ -10,3 +10,4 @@
 /server/app/assets/
 /server/node_modules/
 /server/npm-debug.log
+/server/automock.db
