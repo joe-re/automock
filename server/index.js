@@ -1,11 +1,26 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 
 app.use(express.static(__dirname + '/assets'));
 
-const server = app.listen(3000, function () {
-  const host = server.address().address;
-  const port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
+app.get('/mock_files', function(req, res){
+  fs.readdir('./mock', function(err, files){
+    if (err) throw err;
+    var fileList = [];
+    console.log();
+    files.filter(function(file){
+      console.log(file);
+      return fs.statSync(process.env.AUTOMOCK_ROOT_PATH + '/' + file).isFile() && /.*\.json$/.test(file); //絞り込み
+    }).forEach(function (file) {
+      fileList.push(file);
+    });
+    res.status(200).send(fileList);
+  });
 });
+
+if (!module.parent) {
+  app.listen(3000);
+}
+
+module.exports = app;
