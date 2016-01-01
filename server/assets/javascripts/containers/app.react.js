@@ -3,20 +3,23 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as PageActions from '../actions/mock_files_actions';
+import * as SelectedFilesActions from '../actions/selected_files_actions';
+import * as MockFilesActions from '../actions/mock_files_actions';
 import SelectableLists from './../components/selectable_lists';
+import assign from 'object-assign';
 
 class AppContainer extends React.Component {
   componentDidMount() {
-    const { getMockFiles } = this.props;
+    const { getSelectedFiles, getMockFiles } = this.props;
+    getSelectedFiles();
     getMockFiles();
   }
 
   render() {
-    const { mockFiles } = this.props;
+    const { selectedFiles, mockFiles } = this.props;
     return (
       <div className="container">
-        <SelectableLists mockFiles={mockFiles} />
+        <SelectableLists selectedFiles={selectedFiles} mockFiles={mockFiles}/>
       </div>
     );
   }
@@ -24,12 +27,14 @@ class AppContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    selectedFiles: state.selectedFiles,
     mockFiles: state.mockFiles
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(PageActions, dispatch);
+  const actions = assign({}, SelectedFilesActions, MockFilesActions);
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

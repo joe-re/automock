@@ -11,7 +11,14 @@ describe('GET /mock_files', function () {
   it('receives mock_files and 200', function testSlash(done) {
     request(server).
       get('/mock_files').
-      expect(200, [ 'test.json', 'api/v1/api_test.json' ], done);
+      expect(200, [
+        {
+          'name': 'test.json'
+        },
+        {
+          'name': 'api/v1/api_test.json'
+        }
+      ], done);
   });
 });
 

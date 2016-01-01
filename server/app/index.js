@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/assets'));
 app.get('/mock_files', function(req, res){
   recursive(process.env.AUTOMOCK_ROOT_PATH, function (err, files) {
     const relativePaths = files.map((file) => {
-      return path.relative(process.env.AUTOMOCK_ROOT_PATH, file);
+      return { name: path.relative(process.env.AUTOMOCK_ROOT_PATH, file) };
     });
     res.status(200).send(relativePaths);
   });
