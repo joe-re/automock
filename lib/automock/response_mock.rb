@@ -24,7 +24,7 @@ module Automock
     end
 
     def filename
-      description.gsub(/\s/, '_').gsub(/[?"\\\<>*|]/, '')
+      "#{description.gsub(/\s/, '_').gsub(/[?"\\\<>*|]/, '')}.json"
     end
 
     def mock_data
