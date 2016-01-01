@@ -4,7 +4,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as PageActions from '../actions/mock_files_actions';
-import FileList from './../components/file_list';
+import SelectableLists from './../components/selectable_lists';
 
 class AppContainer extends React.Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class AppContainer extends React.Component {
     const { mockFiles } = this.props;
     return (
       <div className="container">
-        <FileList mockFiles={mockFiles} />
+        <SelectableLists mockFiles={mockFiles} />
       </div>
     );
   }

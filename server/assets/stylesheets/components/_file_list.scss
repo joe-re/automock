@@ -1,3 +1,9 @@
-.mock-file-list {
+.file-list {
   select { width: 100%; }
+  .title {
+    background-color: gray;
+    color: white;
+    padding: 6px;
+    text-align: center;
+  }
 }
