@@ -20,12 +20,12 @@ export default class SelectableLists extends React.Component {
   }
 
   render() {
-    const { selectedFiles, mockFiles } = this.props;
+    const { selectedFiles, unselectedFiles } = this.props;
     return(
       <div className="selectable-lists row">
         <FileList
           title={"not selected files"}
-          files={mockFiles}
+          files={unselectedFiles}
           onChange={this.handleSelectFromNotSelectedFiles.bind(this)}
         />
         <SelectButtons onClickSelectButton={this.props.onCreateSelectedFile} {...this.state} />
