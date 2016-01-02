@@ -47,4 +47,9 @@ if (!module.parent) {
   app.listen(3000);
 }
 
+
+const ProxyServer = require('./proxy_server');
+const proxyServer = new ProxyServer();
+proxyServer.start();
+
 module.exports = app;
