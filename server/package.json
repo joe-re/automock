@@ -1,6 +1,7 @@
 {
   "name": "automock",
   "devDependencies": {
+    "async": "^1.5.1",
     "babel": "^6.1.18",
     "babel-cli": "^6.2.0",
     "babel-core": "^6.3.26",

@@ -3,8 +3,8 @@ var type = dbm.dataType;
 
 exports.up = function(db, callback) {
   db.createTable('selected_files', {
-    id: { type: 'integer', primaryKey: true, autoIncrement: true },
-    name: { type: 'string', unique: true },
+    id: { type: 'int', primaryKey: true, autoIncrement: true },
+    name: { type: 'string', unique: true, notNull: 'true' },
     createdAt: { type: 'datetime' },
     updatedAt: { type: 'datetime' }
   }, callback);
