@@ -42,3 +42,21 @@ describe('POST /selected_files', function () {
       });
   });
 });
+
+
+describe('DELETE /selected_files/:id', function () {
+  beforeEach(function () {
+    server = require('./../../app/index');
+  });
+  it('delete the selectedFile and receives 204', function testSlash(done) {
+    SelectedFile.create({ name: 'api/v1/joes_secret_file' }).then((result) => {
+      console.log(result);
+      request(server).delete('/selected_files/' + result.id).expect(204).end(() => {
+        SelectedFile.count().then((count) => {
+          assert(count === 0);
+          done();
+        });
+      });
+    });
+  });
+});

@@ -6,6 +6,7 @@ const SelectedFile = require('./models/selected_file');
 const bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/assets'));
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.get('/mock_files', function(req, res){
@@ -31,9 +32,14 @@ app.get('/selected_files', function(req, res){
 });
 
 app.post('/selected_files', function(req, res){
-  SelectedFile.create({ name: req.body.name }).
-  then((selectedFile) => {
+  SelectedFile.create({ name: req.body.name }).then((selectedFile) => {
     res.status(201).send(selectedFile);
+  });
+});
+
+app.delete('/selected_files/:id', function(req, res){
+  SelectedFile.destroy({ where: { id: req.params.id } }).then((selectedFile) => {
+    res.status(204).send(selectedFile);
   });
 });
 
