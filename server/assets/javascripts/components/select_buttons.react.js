@@ -2,13 +2,16 @@ import React from 'react';
 
 export default class SelectButtons extends React.Component {
   handleClickSelectButton() {
-    this.props.onClickSelectButton(this.props.selectedFromNotSelectedFiles);
+    this.props.onClickSelectButton(this.props.selectedFromNotSelectedFiles.name);
+  }
+  handleClickUnselectButton() {
+    this.props.onClickUnselectButton(this.props.selectedFromSelectedFiles.id);
   }
   render() {
     return(
       <div className="select-buttons col-xs-1">
         <button className="btn btn-primary" onClick={this.handleClickSelectButton.bind(this)}>→</button>
-        <button className="btn">←</button>
+        <button className="btn" onClick={this.handleClickUnselectButton.bind(this)}>←</button>
       </div>
     );
   }

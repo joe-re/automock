@@ -28,7 +28,11 @@ export default class SelectableLists extends React.Component {
           files={unselectedFiles}
           onChange={this.handleSelectFromNotSelectedFiles.bind(this)}
         />
-        <SelectButtons onClickSelectButton={this.props.onCreateSelectedFile} {...this.state} />
+        <SelectButtons
+          onClickSelectButton={this.props.onCreateSelectedFile}
+          onClickUnselectButton={this.props.onDeleteSelectedFile}
+          {...this.state}
+        />
         <FileList
           title={"selected files"}
           files={selectedFiles}

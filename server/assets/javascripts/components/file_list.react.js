@@ -2,7 +2,8 @@ import React from 'react';
 
 export default class FileList extends React.Component {
   handleSelect(e) {
-    this.props.onChange(e.target.value);
+    const selectedFile = this.props.files.filter((file) => file.name === e.target.value).toArray()[0];
+    this.props.onChange(selectedFile);
   }
   render() {
     const options = this.props.files.map((file) =>

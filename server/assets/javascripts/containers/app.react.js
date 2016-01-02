@@ -19,6 +19,11 @@ class AppContainer extends React.Component {
     createSelectedFile(name);
   }
 
+  handleDeleteSelectedFile(id) {
+    const { deleteSelectedFile } = this.props;
+    deleteSelectedFile(id);
+  }
+
   render() {
     const { selectedFiles, mockFiles } = this.props;
     const selectedFileNames = selectedFiles.map((file) => file.name).toArray();
@@ -29,6 +34,7 @@ class AppContainer extends React.Component {
           selectedFiles={selectedFiles}
           unselectedFiles={unselectedFiles}
           onCreateSelectedFile={this.handleCreateSelectedFile.bind(this)}
+          onDeleteSelectedFile={this.handleDeleteSelectedFile.bind(this)}
         />
       </div>
     );

@@ -3,6 +3,7 @@
 import request from 'superagent';
 export const GET_SELECTED_FILES = 'GET_SELECTED_FILES';
 export const CREATE_SELECTED_FILES = 'CREATE_SELECTED_FILES';
+export const DELETE_SELECTED_FILES = 'DELETE_SELECTED_FILES';
 
 export function getSelectedFiles() {
   return (dispatch) => {
@@ -19,9 +20,7 @@ export function getSelectedFiles() {
 }
 
 export function createSelectedFile(name) {
-  console.log(name);
   return (dispatch) => {
-    console.log(name);
     request.
       post('/selected_files').
       send({ name }).
@@ -30,6 +29,17 @@ export function createSelectedFile(name) {
           type: CREATE_SELECTED_FILES,
           selectedFile: res.body
         });
+      }
+    );
+  };
+}
+
+export function deleteSelectedFile(id) {
+  return (dispatch) => {
+    request.
+      delete(`/selected_files/${id}`).
+      end((_err, _res) => {
+        dispatch({ type: DELETE_SELECTED_FILES, id });
       }
     );
   };
