@@ -1,4 +1,5 @@
-require "automock/version"
+require 'rails'
+require 'automock/version'
 require 'automock/response_mock'
 require 'automock/rspec'
 
@@ -10,6 +11,7 @@ module Automock
     end
 
     def write
+      return unless @mocks
       @mocks.each do |mock|
         mock.write
       end

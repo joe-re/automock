@@ -37,7 +37,7 @@ module Automock
     end
 
     def write
-      pathname = Pathname.new("automock/data/#{uri}/#{filename}")
+      pathname = Pathname.new("#{Rails.root}/automock/data/#{uri}/#{filename}")
       pathname.parent.mkpath
       pathname.open('w') { |file| file << mock_data }
     end
