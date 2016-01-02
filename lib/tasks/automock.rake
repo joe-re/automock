@@ -14,7 +14,7 @@ namespace :automock do
   end
 
   task :install, :options do |_, args|
-    Dir.chdir './mock/server'
+    Dir.chdir './automock/server'
     sh 'npm install && npm run build'
     sh 'node node_modules/db-migrate/bin/db-migrate up'
   end

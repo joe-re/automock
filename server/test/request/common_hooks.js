@@ -1,4 +1,4 @@
-process.env.AUTOMOCK_ROOT_PATH=__dirname + '/../fixtures/mock';
+process.env.AUTOMOCK_DATA_PATH=__dirname + '/../fixtures/mock';
 process.env.NODE_ENV='test';
 
 const sequelize = require('../../app/db/sequelize');

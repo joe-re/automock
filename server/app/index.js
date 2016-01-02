@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.get('/mock_files', function(req, res){
-  recursive(process.env.AUTOMOCK_ROOT_PATH, function (err, files) {
+  recursive(process.env.AUTOMOCK_DATA_PATH, function (err, files) {
     const relativePaths = files.map((file) => {
       return { name: path.relative(process.env.AUTOMOCK_ROOT_PATH, file) };
     });
