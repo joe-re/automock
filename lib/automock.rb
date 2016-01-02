@@ -11,16 +11,13 @@ module Automock
     end
 
     def write
-      return unless @mocks
-      @mocks.each do |mock|
-        mock.write
-      end
+      @mocks && @mocks.each(&:write)
     end
   end
 
   class Railtie < ::Rails::Railtie
     rake_tasks do
-      load "tasks/automock.rake"
+      load 'tasks/automock.rake'
     end
   end
 end

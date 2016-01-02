@@ -19,12 +19,17 @@ module Automock
       @context.request.env['PATH_INFO']
     end
 
+    def response_header
+      p @context.response
+      @context.response.try(:header)
+    end
+
     def response_body
       @context.response.try(:body)
     end
 
     def filename
-      "#{description.gsub(/\s/, '_').gsub(/[?"\\\<>*|]/, '')}.json"
+      "#{method}_#{description.gsub(/\s/, '_').gsub(/[?"\\\<>*|]/, '')}.json"
     end
 
     def mock_data
@@ -32,6 +37,7 @@ module Automock
         description: description,
         method: method,
         uri: uri,
+        response_header: response_header,
         response_body: response_body
       }.to_json
     end
