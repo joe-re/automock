@@ -15,11 +15,20 @@ class AppContainer extends React.Component {
     getMockFiles();
   }
 
+  handleCreateSelectedFile(name) {
+    const { createSelectedFile } = this.props;
+    createSelectedFile(name);
+  }
+
   render() {
     const { selectedFiles, mockFiles } = this.props;
     return (
       <div className="container">
-        <SelectableLists selectedFiles={selectedFiles} mockFiles={mockFiles}/>
+        <SelectableLists
+          selectedFiles={selectedFiles}
+          mockFiles={mockFiles}
+          onCreateSelectedFile={this.handleCreateSelectedFile.bind(this)}
+        />
       </div>
     );
   }

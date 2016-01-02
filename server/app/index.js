@@ -3,8 +3,10 @@ const app = express();
 const recursive = require('recursive-readdir');
 const path = require('path');
 const SelectedFile = require('./models/selected_file');
+const bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/assets'));
+app.use(bodyParser.json());
 
 app.get('/mock_files', function(req, res){
   recursive(process.env.AUTOMOCK_ROOT_PATH, function (err, files) {
@@ -29,7 +31,7 @@ app.get('/selected_files', function(req, res){
 });
 
 app.post('/selected_files', function(req, res){
-  SelectedFile.create({ name: req.name }).
+  SelectedFile.create({ name: req.body.name }).
   then((selectedFile) => {
     res.status(201).send(selectedFile);
   });
