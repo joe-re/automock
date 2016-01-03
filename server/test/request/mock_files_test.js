@@ -13,10 +13,18 @@ describe('GET /mock_files', function () {
       get('/mock_files').
       expect(200, [
         {
-          'name': 'test.json'
+          description: 'api description',
+          method: 'POST',
+          name: 'test.json',
+          response_body: '{\"users\":[{\"username\":\"sample\",\"email\":\"sample@ggg.com\"}]}',
+          uri: '/api/v1/users'
         },
         {
-          'name': 'api/v1/api_test.json'
+          description: 'description',
+          method: 'GET',
+          name: 'api/v1/api_test.json',
+          response_body: '{\"users\":[{\"username\":\"sample\",\"email\":\"sample@ggg.com\"}]}',
+          uri: '/api/v1/users'
         }
       ], done);
   });
