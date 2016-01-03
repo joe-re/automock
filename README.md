@@ -1,41 +1,106 @@
 # Automock
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/automock`. To experiment with that code, run `bin/console` for an interactive prompt.
+Generate WebAPI mocking response data from your rails application's request-spec.
 
-TODO: Delete this and the text above, and describe your gem
+And run proxy server for mocking response.
+
+Inspired by [autodoc](https://github.com/r7kamura/autodoc).
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your rails application's Gemfile:
 
 ```ruby
-gem 'automock'
+gem "automock", group: :test
 ```
 
-And then execute:
+Download and install by running:
 
-    $ bundle
+```
+$ bundle install
+```
 
-Or install it yourself as:
+And setup mocking server.
 
-    $ gem install automock
+```
+$ rake automock:setup
+```
+
+This generate `automock` directory under your rails root.  
+Mocking server is inside it.
+
+Then run mocking server.
+
+```
+$ rake automock:server
+```
+
+By default, proxy server use 8001 port and target application using 3000 port.  
+Mocking management server use 8000 port.  
+Now you can access it, localhost:8000.  
+And access localhost:8001, you can receive response by proxy;
 
 ## Usage
 
-TODO: Write usage instructions here
+### Generate data for mocking response
+Run rspec with AUTOMOCK=1 to generate mocking data for your request-specs tagged with :automock.
 
+```
+AUTOMOCK=1 rspec
+```
+
+#### Example
+
+```ruby
+RSpec.describe 'users', type: :request do
+  describe 'GET /api/v1/users', automock: true do
+    before do
+      get '/api/v1/users'
+    end
+    it 'receives 200 and users json' do
+      expect(response.status).to eq 200
+    end
+    # and more example...
+  end
+end
+```
+
+### Mocking response
+
+You can manage mocking data, on or off, by mocking response management server.
+By default, mocking management server use 8000 port.
+So you can access it.
+
+Selected mocking data is used by proxy.  
+Unselected api is passed through normally.
+
+### Configration
+
+You can change automock's using port by rake args.
+
+- automock_port
+- rails_port
+- proxy_port
+
+Example:
+```
+$ rake automock:server automock_port=3001 rails_port=3002 proxy_port=3003
+```
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies.
+If you run mocking server, run `bin/server` to start it;
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### spec
+
+Then, run `rake spec` to run the tests for ruby code.
+And change directory to `server`, then run `npm run test` to run the tests for mocking server.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/automock. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/joe-re/automock. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
