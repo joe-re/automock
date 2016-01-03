@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const app = express();
 const recursive = require('recursive-readdir');
@@ -9,6 +11,7 @@ const fs = require('fs');
 app.use(express.static(__dirname + '/assets'));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+let proxyServer;
 
 app.get('/mock_files', function(_req, res){
   recursive(process.env.AUTOMOCK_DATA_PATH, (_err, filePaths) => {
@@ -46,19 +49,21 @@ app.post('/selected_files', function(req, res){
     method: req.body.method
   }).then((selectedFile) => {
     res.status(201).send(selectedFile);
+    proxyServer.loadSelectedFiles();
   });
 });
 
 app.delete('/selected_files/:id', function(req, res){
   SelectedFile.destroy({ where: { id: req.params.id } }).then(() => {
     res.status(204).send();
+    proxyServer.loadSelectedFiles();
   });
 });
 
 if (!module.parent) {
   app.listen(3000);
   const ProxyServer = require('./proxy_server');
-  const proxyServer = new ProxyServer();
+  proxyServer = new ProxyServer();
   proxyServer.start();
 }
 
