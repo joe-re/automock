@@ -29,5 +29,9 @@ describe Automock do
     it 'has response body' do
       expect(JSON.parse(@file_text)['response_body']).to eq expected_body
     end
+
+    it 'has status_code' do
+      expect(JSON.parse(@file_text)['status']).to eq 200
+    end
   end
 end

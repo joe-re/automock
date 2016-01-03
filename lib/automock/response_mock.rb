@@ -20,8 +20,11 @@ module Automock
     end
 
     def response_header
-      p @context.response
       @context.response.try(:header)
+    end
+
+    def status
+      @context.response.try(:status)
     end
 
     def response_body
@@ -37,6 +40,7 @@ module Automock
         description: description,
         method: method,
         uri: uri,
+        status: status,
         response_header: response_header,
         response_body: response_body
       }.to_json
