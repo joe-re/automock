@@ -1,0 +1,13 @@
+# starting server from rake task
+
+if [ $# -ne 4 ]; then
+  echo "empty args!" 1>&2
+  exit 1
+fi
+
+export AUTOMOCK_DATA_PATH=$1
+export AUTOMOCK_PORT=$2
+export AUTOMOCK_TARGET_PORT=$3
+export AUTOMOCK_PROXY_PORT=$4
+
+node app/index.js

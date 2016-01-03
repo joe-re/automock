@@ -61,7 +61,7 @@ app.delete('/selected_files/:id', function(req, res){
 });
 
 if (!module.parent) {
-  app.listen(3000);
+  app.listen(process.env.AUTOMOCK_PORT || 8000);
   const ProxyServer = require('./proxy_server');
   proxyServer = new ProxyServer();
   proxyServer.start();

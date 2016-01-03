@@ -7,7 +7,11 @@ const fs = require('fs');
 
 class ProxyServer {
   constructor() {
-    this.server = httpProxy.createProxyServer({ target:'http://localhost:3000' }).listen(8000);
+    const targetPort = process.env.AUTOMOCK_TARGET_PORT || 3000;
+    const proxyPort = process.env.AUTOMOCK_PROXY_PORT || 8001;
+    this.server = httpProxy.createProxyServer({
+      target:`http://localhost:${targetPort}`
+    }).listen(proxyPort);
     this.selectedFiles = [];
   }
 
