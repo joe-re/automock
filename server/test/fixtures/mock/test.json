@@ -1,1 +1,1 @@
-{"description":"api description","method":"POST","uri":"/api/v1/users","response_body":"{\"users\":[{\"username\":\"sample\",\"email\":\"sample@ggg.com\"}]}"}
+{"description":"api description","method":"POST","uri":"/api/v1/users","status": "201","response_body":"{\"users\":[{\"username\":\"sample\",\"email\":\"sample@ggg.com\"}]}"}

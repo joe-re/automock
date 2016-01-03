@@ -51,7 +51,7 @@ app.post('/selected_files', function(req, res){
 
 app.delete('/selected_files/:id', function(req, res){
   SelectedFile.destroy({ where: { id: req.params.id } }).then(() => {
-    res.status(204);
+    res.status(204).send();
   });
 });
 
