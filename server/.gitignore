@@ -1,0 +1,4 @@
+/app/assets/
+/node_modules/
+/npm-debug.log
+/*.db

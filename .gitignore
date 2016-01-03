@@ -7,7 +7,4 @@
 /pkg/
 /spec/reports/
 /tmp/
-/server/app/assets/
-/server/node_modules/
-/server/npm-debug.log
-/server/*.db
+/spec/fixtures/data

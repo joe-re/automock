@@ -6,7 +6,7 @@ const SelectedFile = require('../../app/models/selected_file');
 
 before(function() {
   const execSync = require('child_process').execSync;
-  execSync('node ./../../node_modules/db-migrate/bin/db-migrate up --config app/db/database.json -e test');
+  execSync('node ./node_modules/db-migrate/bin/db-migrate up --config app/db/database.json -e test');
 });
 
 beforeEach(function () {

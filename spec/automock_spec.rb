@@ -1,11 +1,13 @@
 require 'spec_helper'
-require 'JSON'
+require 'json'
 
 describe Automock do
   before(:all) do
-    File.open('spec/dummy/automock/data/api/v1/users/get_receives_200_and_users_json.json') do |file|
-      @file_text = file.read
-    end
+    @file_text = File.open(
+      File.expand_path(
+        './fixtures/data/api/v1/users/GET_receives_200_and_users_json.json', File.dirname(__FILE__)
+      )
+    ).read
   end
 
   describe 'make correct file content' do

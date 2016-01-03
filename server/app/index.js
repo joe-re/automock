@@ -49,14 +49,18 @@ app.post('/selected_files', function(req, res){
     method: req.body.method
   }).then((selectedFile) => {
     res.status(201).send(selectedFile);
-    proxyServer.loadSelectedFiles();
+    if (proxyServer) {
+      proxyServer.loadSelectedFiles();
+    }
   });
 });
 
 app.delete('/selected_files/:id', function(req, res){
   SelectedFile.destroy({ where: { id: req.params.id } }).then(() => {
     res.status(204).send();
-    proxyServer.loadSelectedFiles();
+    if (proxyServer) {
+      proxyServer.loadSelectedFiles();
+    }
   });
 });
 

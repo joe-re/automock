@@ -1,4 +1,11 @@
 language: ruby
 rvm:
   - 2.3.0
+sudo: false
 before_install: gem install bundler -v 1.11.2
+before_install: nvm install 4.2.3
+install:
+  - ./bin/setup
+script:
+  - bundle exec rake spec
+  - cd server && npm test

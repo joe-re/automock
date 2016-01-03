@@ -28,6 +28,7 @@ $ rake automock:setup
 
 This generate `automock` directory under your rails root.  
 Mocking server is inside it.
+I recommend adding automock directory to .gitignore;
 
 Then run mocking server.
 
@@ -95,8 +96,9 @@ If you run mocking server, run `bin/server` to start it;
 
 ### spec
 
-Then, run `rake spec` to run the tests for ruby code.
-And change directory to `server`, then run `npm run test` to run the tests for mocking server.
+Then, run `rake spec` to run the tests for ruby code.  
+And change directory to `server`, then run `npm run test` to run the tests for mocking server.  
+If you want to update mock data for specs, run `bundle exec rake update_mockdata_fixtures` command.
 
 ## Contributing
 

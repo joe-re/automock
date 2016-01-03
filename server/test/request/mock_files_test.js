@@ -16,6 +16,7 @@ describe('GET /mock_files', function () {
           description: 'api description',
           method: 'POST',
           name: 'test.json',
+          status: '201',
           response_body: '{\"users\":[{\"username\":\"sample\",\"email\":\"sample@ggg.com\"}]}',
           uri: '/api/v1/users'
         },
@@ -23,6 +24,7 @@ describe('GET /mock_files', function () {
           description: 'description',
           method: 'GET',
           name: 'api/v1/api_test.json',
+          status: '200',
           response_body: '{\"users\":[{\"username\":\"sample\",\"email\":\"sample@ggg.com\"}]}',
           uri: '/api/v1/users'
         }
