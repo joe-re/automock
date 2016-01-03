@@ -19,11 +19,11 @@ export function getSelectedFiles() {
   };
 }
 
-export function createSelectedFile(name) {
+export function createSelectedFile(file) {
   return (dispatch) => {
     request.
       post('/selected_files').
-      send({ name }).
+      send(file).
       end((_err, res) => {
         dispatch({
           type: CREATE_SELECTED_FILES,

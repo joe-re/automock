@@ -40,14 +40,18 @@ app.get('/selected_files', function(req, res){
 });
 
 app.post('/selected_files', function(req, res){
-  SelectedFile.create({ name: req.body.name }).then((selectedFile) => {
+  SelectedFile.create({
+    name: req.body.name,
+    uri: req.body.uri,
+    method: req.body.method
+  }).then((selectedFile) => {
     res.status(201).send(selectedFile);
   });
 });
 
 app.delete('/selected_files/:id', function(req, res){
-  SelectedFile.destroy({ where: { id: req.params.id } }).then((selectedFile) => {
-    res.status(204).send(selectedFile);
+  SelectedFile.destroy({ where: { id: req.params.id } }).then(() => {
+    res.status(204);
   });
 });
 

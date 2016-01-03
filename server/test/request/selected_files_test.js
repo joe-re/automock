@@ -31,12 +31,14 @@ describe('POST /selected_files', function () {
   it('creates new selectedFile and receives 201', function testSlash(done) {
     request(server).
       post('/selected_files').
-      send({ name: 'bar' }).
+      send({ name: 'bar', method: 'GET', uri: '/api/v1/test' }).
       expect(201).
       end(() => {
         SelectedFile.findAll().then((result) => {
           assert(result.length === 1);
           assert(result[0].name === 'bar');
+          assert(result[0].method === 'GET');
+          assert(result[0].uri === '/api/v1/test');
           done();
         });
       });

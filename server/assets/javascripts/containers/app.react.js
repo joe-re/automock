@@ -14,9 +14,9 @@ class AppContainer extends React.Component {
     getMockFiles();
   }
 
-  handleCreateSelectedFile(name) {
+  handleCreateSelectedFile(file) {
     const { createSelectedFile } = this.props;
-    createSelectedFile(name);
+    createSelectedFile(file);
   }
 
   handleDeleteSelectedFile(id) {

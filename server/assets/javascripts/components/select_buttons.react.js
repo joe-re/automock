@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class SelectButtons extends React.Component {
   handleClickSelectButton() {
-    this.props.onClickSelectButton(this.props.selectedFromNotSelectedFiles.name);
+    this.props.onClickSelectButton(this.props.selectedFromNotSelectedFiles);
   }
   handleClickUnselectButton() {
     this.props.onClickUnselectButton(this.props.selectedFromSelectedFiles.id);
