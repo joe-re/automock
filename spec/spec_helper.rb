@@ -3,7 +3,7 @@ require 'automock'
 RSpec.configure do |config|
   config.before(:all) do
     `rm -rf spec/dummy/automock`
-    `bundle exec rspec spec/dummy/spec/requests/dummy_api.rb`
+    `AUTOMOCK=1 bundle exec rspec spec/dummy/spec/requests/dummy_api.rb`
   end
 
   config.after(:all) do

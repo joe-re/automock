@@ -6,6 +6,7 @@ require 'automock/rspec'
 module Automock
   class << self
     def append(context, example)
+      return unless ENV["AUTOMOCK"]
       @mocks ||= []
       @mocks << ResponseMock.new(context.clone, example.clone)
     end
