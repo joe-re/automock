@@ -9,12 +9,12 @@ before(function() {
   execSync('node ./node_modules/db-migrate/bin/db-migrate up --config app/db/database.json -e test');
 });
 
-beforeEach(function () {
-  SelectedFile.truncate();
+beforeEach(function (done) {
+  SelectedFile.truncate().then(() => done());
 });
 
-after(function() {
+after(function(done) {
   sequelize.
     getQueryInterface().
-    dropAllTables();
+    dropAllTables().then(() => done());
 });
