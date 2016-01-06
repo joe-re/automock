@@ -7,6 +7,7 @@ const path = require('path');
 const SelectedFile = require('./models/selected_file');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const _ = require('underscore');
 
 app.use(express.static(__dirname + '/assets'));
 app.use(bodyParser.urlencoded());
@@ -29,17 +30,22 @@ app.get('/mock_files', function(_req, res){
   });
 });
 
-app.get('/selected_files', function(req, res){
+app.get('/selected_files', function(_req, res){
   SelectedFile.findAll().
-    then((files) => {
-      const response = files.map((file) => {
-        return {
-          id: file.id,
-          name: file.name
-        };
-      });
-      res.status(200).send(response);
-    });
+    then((files) =>
+      files.map((file) => {
+        return { id: file.id, name: file.name };
+      })
+    ).then((selectedFiles) =>
+      new Promise((resolve) => {
+        recursive(process.env.AUTOMOCK_DATA_PATH, (_err, filePaths) => {
+          const fileNames = filePaths.map((filePath) => path.relative(process.env.AUTOMOCK_DATA_PATH, filePath));
+          resolve(selectedFiles.filter((selectedFile) => _.includes(fileNames, selectedFile.name)));
+        });
+      })
+    ).then((response) =>
+      res.status(200).send(response)
+    );
 });
 
 app.post('/selected_files', function(req, res){
