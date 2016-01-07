@@ -5,14 +5,14 @@ describe Automock do
   before(:all) do
     @file_text = File.open(
       File.expand_path(
-        './fixtures/data/api/v1/users/GET_receives_200_and_users_json.json', File.dirname(__FILE__)
+        './fixtures/data/api/v1/users/GET_This_is_test_API.json', File.dirname(__FILE__)
       )
     ).read
   end
 
   describe 'make correct file content' do
     it 'has description' do
-      expect(JSON.parse(@file_text)['description']).to eq 'receives 200 and users json'
+      expect(JSON.parse(@file_text)['description']).to eq 'This is test API'
     end
 
     it 'has HTTP method' do

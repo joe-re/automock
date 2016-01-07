@@ -1,4 +1,5 @@
 # Automock
+[![Build Status](https://travis-ci.org/joe-re/automock.svg?branch=master)](https://travis-ci.org/joe-re/automock)
 
 Generate WebAPI mocking response data from your rails application's request-spec.
 
@@ -28,7 +29,7 @@ $ rake automock:setup
 
 This generate `automock` directory under your rails root.  
 Mocking server is inside it.
-I recommend adding automock directory to .gitignore;
+I recommend adding automock directory to .gitignore.
 
 Then run mocking server.
 
@@ -39,7 +40,7 @@ $ rake automock:server
 By default, proxy server use 8001 port and target application using 3000 port.  
 Mocking management server use 8000 port.  
 Now you can access it, localhost:8000.  
-And access localhost:8001, you can receive response by proxy;
+And access localhost:8001, you can receive response by proxy.
 
 ## Usage
 
@@ -53,8 +54,8 @@ AUTOMOCK=1 rspec
 #### Example
 
 ```ruby
-RSpec.describe 'users', type: :request do
-  describe 'GET /api/v1/users', automock: true do
+describe 'GET /api/v1/users' do
+  context 'This is test API', automock: true do
     before do
       get '/api/v1/users'
     end
@@ -92,13 +93,12 @@ $ rake automock:server automock_port=3001 rails_port=3002 proxy_port=3003
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies.
-If you run mocking server, run `bin/server` to start it;
+If you run mocking server, run `bin/server` to start it.
 
 ### spec
 
 Then, run `rake spec` to run the tests for ruby code.  
 And change directory to `server`, then run `npm run test` to run the tests for mocking server.  
-If you want to update mock data for specs, run `bundle exec rake update_mockdata_fixtures` command.
 
 ## Contributing
 
