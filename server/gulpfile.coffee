@@ -13,7 +13,7 @@ gulp.path =
   dist: 'dist'
 
 gulp.task 'build', ->
-  seq ['build:html', 'build:browserify', 'build:scss']
+  seq ['build:html', 'build:server', 'build:browserify', 'build:scss']
 
 gulp.task 'build:html', ->
   gulp.src "#{@path.assetSrc}/**/*.html"
@@ -39,5 +39,5 @@ gulp.task 'build:scss', ->
     .pipe gulp.dest(@path.assetDist)
 
 gulp.task 'watch', ['build'], ->
-  gulp.watch("#{@path.src}/**/*.js", ['build:browserify'])
+  gulp.watch("#{@path.src}/**/*.js", ['build:browserify', 'build:server'])
   gulp.watch("#{@path.src}/**/*.scss", ['build:scss'])

@@ -1,8 +1,8 @@
 process.env.AUTOMOCK_DATA_PATH=__dirname + '/../fixtures/mock';
 process.env.NODE_ENV='test';
 
-const sequelize = require('../../src/db/sequelize');
-const SelectedFile = require('../../src/models/selected_file');
+const sequelize = require('../../dist/db/sequelize');
+const SelectedFile = require('../../dist/models/selected_file');
 
 before(function() {
   const execSync = require('child_process').execSync;

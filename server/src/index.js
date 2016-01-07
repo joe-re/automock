@@ -1,5 +1,7 @@
 'use strict';
 
+import 'babel-polyfill';
+
 const express = require('express');
 const app = express();
 const recursive = require('recursive-readdir');
@@ -14,20 +16,20 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 let proxyServer;
 
-app.get('/mock_files', function(_req, res){
-  recursive(process.env.AUTOMOCK_DATA_PATH, (_err, filePaths) => {
-    Promise.all(filePaths.map((filePath) =>
-      new Promise((resolve) => {
-        fs.readFile(filePath, 'utf8', (_err2, text) => {
-          const mockData = JSON.parse(text);
-          mockData.name = path.relative(process.env.AUTOMOCK_DATA_PATH, filePath);
-          resolve(mockData);
-        });
-      })
-    )).then((files) => {
-      res.status(200).send(files);
-    });
-  });
+app.get('/mock_files', async function(_req, res){
+  const filePaths = await new Promise((resolve) =>
+    recursive(process.env.AUTOMOCK_DATA_PATH, (_err, v) => resolve(v))
+  );
+  const files = await Promise.all(filePaths.map((filePath) =>
+    new Promise((resolve) => {
+      fs.readFile(filePath, 'utf8', (_err2, text) => {
+        const mockData = JSON.parse(text);
+        mockData.name = path.relative(process.env.AUTOMOCK_DATA_PATH, filePath);
+        resolve(mockData);
+      });
+    })
+  ));
+  res.status(200).send(files);
 });
 
 app.get('/selected_files', function(_req, res){
