@@ -10,4 +10,4 @@ bundle exec rake update_mockdata_fixtures
 cd server
 npm install
 npm run build
-node node_modules/db-migrate/bin/db-migrate up --config app/db/database.json -e dev
+node node_modules/db-migrate/bin/db-migrate up --config src/db/database.json -e dev

@@ -10,4 +10,4 @@ export AUTOMOCK_PORT=$2
 export AUTOMOCK_TARGET_PORT=$3
 export AUTOMOCK_PROXY_PORT=$4
 
-node app/index.js
+node dist/index.js

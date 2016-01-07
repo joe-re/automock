@@ -2,14 +2,14 @@
 
 require('./common_hooks');
 const request = require('supertest');
-const SelectedFile = require('../../app/models/selected_file');
+const SelectedFile = require('../../dist/models/selected_file');
 const assert = require('power-assert');
 
 let server;
 describe('GET /selected_files', function () {
   context('has existing mock_data', () => {
     beforeEach(function () {
-      server = require('./../../app/index');
+      server = require('./../../dist/index');
       SelectedFile.create({ name: 'test.json' });
       console.log('create?');
     });
@@ -28,7 +28,7 @@ describe('GET /selected_files', function () {
 
   context("hasn't existing mock_data", () => {
     beforeEach(function (done) {
-      server = require('./../../app/index');
+      server = require('./../../dist/index');
       SelectedFile.create({ name: 'not_exist_file.json' }).then(done());
     });
     it('get [] and receives 200', function testSlash(done) {
@@ -46,7 +46,7 @@ describe('GET /selected_files', function () {
 
 describe('POST /selected_files', function () {
   beforeEach(function () {
-    server = require('./../../app/index');
+    server = require('./../../dist/index');
   });
   it('creates new selectedFile and receives 201', function testSlash(done) {
     request(server).
@@ -68,7 +68,7 @@ describe('POST /selected_files', function () {
 
 describe('DELETE /selected_files/:id', function () {
   beforeEach(function () {
-    server = require('./../../app/index');
+    server = require('./../../dist/index');
   });
   it('delete the selectedFile and receives 204', function testSlash(done) {
     SelectedFile.create({ name: 'api/v1/joes_secret_file' }).then((result) => {
