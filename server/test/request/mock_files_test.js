@@ -6,7 +6,7 @@ const request = require('supertest');
 let server;
 describe('GET /mock_files', function () {
   beforeEach(function () {
-    server = require('./../../app/index');
+    server = require('./../../src/index');
   });
   it('receives mock_files and 200', function testSlash(done) {
     request(server).
