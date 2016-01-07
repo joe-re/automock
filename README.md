@@ -1,4 +1,5 @@
 # Automock
+[![Build Status](https://travis-ci.org/joe-re/automock.svg?branch=master)](https://travis-ci.org/joe-re/automock)
 
 Generate WebAPI mocking response data from your rails application's request-spec.
 
