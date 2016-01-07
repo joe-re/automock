@@ -54,8 +54,8 @@ AUTOMOCK=1 rspec
 #### Example
 
 ```ruby
-RSpec.describe 'users', type: :request do
-  describe 'GET /api/v1/users', automock: true do
+describe 'GET /api/v1/users' do
+  context 'This is test API', automock: true do
     before do
       get '/api/v1/users'
     end

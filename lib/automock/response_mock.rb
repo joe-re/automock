@@ -8,7 +8,7 @@ module Automock
     end
 
     def description
-      @example.description
+      @example.try(:example_group).try(:description) || @example.description
     end
 
     def method
