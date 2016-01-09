@@ -9,7 +9,7 @@ export default class SelectButtons extends React.Component {
   }
   render() {
     return(
-      <div className="select-buttons col-xs-1">
+      <div className="select-buttons col-xs-2">
         <button className="btn btn-primary" onClick={this.handleClickSelectButton.bind(this)}>→</button>
         <button className="btn" onClick={this.handleClickUnselectButton.bind(this)}>←</button>
       </div>

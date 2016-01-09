@@ -24,10 +24,19 @@ class AppContainer extends React.Component {
     deleteSelectedFile(id);
   }
 
-  render() {
+  computeFileContents() {
     const { selectedFiles, mockFiles } = this.props;
     const selectedFileNames = selectedFiles.map((file) => file.name).toArray();
-    const unselectedFiles = mockFiles.filter((file) => !_.includes(selectedFileNames, file.name));
+    const splited = _.partition(mockFiles.toArray(), (file) => _.includes(selectedFileNames, file.name));
+    splited[0] = splited[0].map((file) => {
+      file.id = _.find(selectedFiles.toArray(), (selectedFile) => selectedFile.name === file.name).id;
+      return file;
+    });
+    return({ selectedFiles: splited[0], unselectedFiles: splited[1] });
+  }
+
+  render() {
+    const { selectedFiles, unselectedFiles } = this.computeFileContents();
     return (
       <div className="container">
         <SelectableLists
