@@ -1,0 +1,6 @@
+.json-viewer {
+  border: gray solid 1px;
+  li > div, li > div ~ label {
+    cursor: pointer;
+  }
+}
