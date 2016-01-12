@@ -36,6 +36,7 @@ export default class SelectableLists extends React.Component {
             title={"not selected files"}
             files={unselectedFiles}
             onChange={this.handleSelectFromNotSelectedFiles.bind(this)}
+            viewingFile={this.state.viewingFile}
           />
           <SelectButtons
             onClickSelectButton={this.props.onCreateSelectedFile}
@@ -46,9 +47,12 @@ export default class SelectableLists extends React.Component {
             title={"selected files"}
             files={selectedFiles}
             onChange={this.handleSelectFromSelectedFiles.bind(this)}
+            viewingFile={this.state.viewingFile}
           />
         </div>
-        <JsonViewer dataSource={this.state.viewingFile}/>
+        <div className="row">
+          <JsonViewer dataSource={this.state.viewingFile}/>
+        </div>
       </div>
     );
   }

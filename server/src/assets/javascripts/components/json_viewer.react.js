@@ -13,6 +13,7 @@ export default class JsonViewer extends React.Component {
     delete distJson.id; // don't show id
     return distJson;
   }
+
   render(){
     const json = this.parseJson();
 
@@ -22,7 +23,7 @@ export default class JsonViewer extends React.Component {
     }
 
     return (
-      <div>{ jsonTree }</div>
+      <div className="col-xs-12">{ jsonTree }</div>
     );
   }
 }
