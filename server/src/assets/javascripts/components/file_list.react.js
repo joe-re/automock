@@ -1,21 +1,30 @@
 import React from 'react';
 
 export default class FileList extends React.Component {
-  handleSelect(e) {
-    const selectedFile = this.props.files.filter((file) => file.name === e.target.value)[0];
-    this.props.onChange(selectedFile);
+  handleSelect(file) {
+    this.props.onChange(file);
   }
   render() {
-    const options = this.props.files.map((file) =>
-      <option value={file.name} key={file.name}>{file.name}</option>
-    );
+    const options = this.props.files.map((file) => {
+      let className = 'item';
+      if (file === this.props.viewingFile) {
+        className += ' active';
+      }
+      return (
+        <div
+          className={className}
+          onClick={this.handleSelect.bind(this, file)}
+          key={file.name}
+        >
+          {file.name}
+        </div>
+      );
+    });
     return(
       <div className="file-list col-xs-5">
-        <div className="title">{this.props.title}</div>
-        <div>
-          <select size="10" onChange={this.handleSelect.bind(this)}>
-            {options}
-          </select>
+        <h5>{this.props.title}</h5>
+        <div className="file-select-box">
+          {options}
         </div>
       </div>
     );

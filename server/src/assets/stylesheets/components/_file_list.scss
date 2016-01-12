@@ -1,10 +1,30 @@
+.selectable-lists {
+  height: 300px;
+}
 .file-list {
-  margin-bottom: 20px;
-  select { width: 100%; }
-  .title {
-    background-color: gray;
-    color: white;
-    padding: 6px;
-    text-align: center;
+  margin-bottom: 8px;
+  height: 100%;
+  .file-select-box {
+    border: grey solid 1px;
+    height: 260px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .item {
+    color: #555;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+  .item.active {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
   }
 }

@@ -73,7 +73,7 @@ You can manage mocking data, on or off, by mocking response management server.
 By default, mocking management server use 8000 port.
 So you can access it.
 
-![management_server_screenshot](https://cloud.githubusercontent.com/assets/4954534/12217110/4babb652-b739-11e5-86bb-fe417f3f6754.png)
+![management_server_screenshot](https://cloud.githubusercontent.com/assets/4954534/12269897/eb2235ee-b996-11e5-94b9-aa59c565bb97.png)
 
 Selected mocking data is used by proxy.  
 Unselected api is passed through normally.
