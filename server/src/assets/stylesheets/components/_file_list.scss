@@ -1,6 +1,7 @@
 .selectable-lists {
   height: 300px;
 }
+
 .file-list {
   margin-bottom: 8px;
   height: 100%;
@@ -10,6 +11,7 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
+
   .item {
     color: #555;
     display: block;
@@ -22,9 +24,15 @@
       background-color: #f5f5f5;
     }
   }
+
   .item.active {
     color: #fff;
     background-color: #337ab7;
     border-color: #337ab7;
+  }
+
+  .incremental-search-input {
+    width: 100%;
+    margin-bottom: 4px;
   }
 }

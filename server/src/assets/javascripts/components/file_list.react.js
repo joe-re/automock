@@ -23,6 +23,7 @@ export default class FileList extends React.Component {
     return(
       <div className="file-list col-xs-5">
         <h5>{this.props.title}</h5>
+        <input className="incremental-search-input"/>
         <div className="file-select-box">
           {options}
         </div>
