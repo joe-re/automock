@@ -11,7 +11,6 @@ describe('GET /selected_files', function () {
     beforeEach(function () {
       server = require('./../../dist/index');
       SelectedFile.create({ name: 'test.json' });
-      console.log('create?');
     });
     it('get selectedFiles and receives 200', function testSlash(done) {
       request(server).
@@ -36,7 +35,6 @@ describe('GET /selected_files', function () {
         get('/selected_files').
         expect(200).
         end((_err, response) => {
-          console.log(response.body);
           assert(response.body.length === 0);
           done();
         });

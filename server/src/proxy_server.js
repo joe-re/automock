@@ -9,20 +9,17 @@ class ProxyServer {
   constructor() {
     const targetPort = process.env.AUTOMOCK_TARGET_PORT || 3000;
     const proxyPort = process.env.AUTOMOCK_PROXY_PORT || 8001;
-    this.server = httpProxy.createProxyServer({
-      target:`http://localhost:${targetPort}`
-    }).listen(proxyPort);
+    this.server = httpProxy.createProxyServer({ target:`http://localhost:${targetPort}` }).listen(proxyPort);
     this.selectedFiles = [];
   }
 
   loadSelectedFiles() {
-    SelectedFile.findAll().then((records) => {
+    return SelectedFile.findAll().then((records) => {
       this.selectedFiles = records;
     });
   }
 
   start() {
-    this.loadSelectedFiles();
     this.server.on('proxyRes', (_proxyRes, req, res) => {
       const lookupedSelectedFile = _.find(this.selectedFiles, (selectedFile) =>
         (selectedFile.uri === req.url) && (selectedFile.method === req.method)
@@ -34,7 +31,7 @@ class ProxyServer {
             bufs.push(body);
           };
           res.end = () => {
-            fs.readFile(`${process.env.AUTOMOCK_DATA_PATH}/${lookupedSelectedFile.name}`, 'utf8', function (_err, text) {
+            fs.readFile(`${process.env.AUTOMOCK_DATA_PATH}/${lookupedSelectedFile.name}`, 'utf8', (_err, text) => {
               const mockData = JSON.parse(text);
               writeHead.call(res, mockData.status, mockData.response_header);
               write.call(res, mockData.response_body);
@@ -44,6 +41,7 @@ class ProxyServer {
         };
       }
     });
+    return this.loadSelectedFiles();
   }
 }
 
