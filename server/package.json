@@ -1,5 +1,9 @@
 {
   "name": "automock",
+  "engines" : {
+    "node": ">=4.0.0",
+    "npm": ">=2.0.0"
+  },
   "devDependencies": {
     "async": "^1.5.1",
     "babel": "^6.1.18",
